@@ -1,0 +1,56 @@
+.card button{
+	color: black;
+}
+#controlled-tab-example-tab-serious, .serious{
+	color: darkred;
+}
+#controlled-tab-example-tab-critical, .critical{
+	color: red;
+}
+#controlled-tab-example-tab-moderate, .moderate{
+	color: orange;
+}
+#controlled-tab-example-tab-minor, .minor{
+	color: blue;
+}
+#controlled-tab-example-tab-total{
+	display: none;
+}
+
+.insights{
+	float: right;
+	font-size: 12px;
+}
+
+.line{
+	float: right;
+	margin-top: 50px;
+}
+
+.nav-tabs a{
+	text-transform: capitalize;
+	color: black;
+}
+
+code{
+  cursor: pointer;
+  color: red;
+  background-color: #f9f2f4;
+  padding: 2px 4px;
+  font-size: 90%;
+  border-radius: 4px;
+  outline: none;
+  font-family: unset;
+}
+
+.accordion, .card{
+	margin-bottom: 10px;
+}
+
+.hidden {
+	display: none;
+}
+
+button.btn-link{
+	color: blue;
+}
