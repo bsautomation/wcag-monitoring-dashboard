@@ -36,6 +36,7 @@ const Task = () => {
     return (
       <Container fluid>
         <Header />
+          <Button className='download-csv' variant="outline-primary">Download CSV </Button>
           {data.map((tasks, index)=>(
             <Card key={index} data={tasks} titleIndex={index+1}/>
           ))}

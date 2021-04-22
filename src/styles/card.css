@@ -1,35 +1,35 @@
 .card button{
-	color: black;
+  color: black;
 }
 #controlled-tab-example-tab-serious, .serious{
-	color: darkred;
+  color: darkred;
 }
 #controlled-tab-example-tab-critical, .critical{
-	color: red;
+  color: red;
 }
 #controlled-tab-example-tab-moderate, .moderate{
-	color: orange;
+  color: orange;
 }
 #controlled-tab-example-tab-minor, .minor{
-	color: blue;
+  color: blue;
 }
 #controlled-tab-example-tab-total{
-	display: none;
+  display: none;
 }
 
 .insights{
-	float: right;
-	font-size: 12px;
+  float: right;
+  font-size: 12px;
 }
 
 .line{
-	float: right;
-	margin-top: 50px;
+  float: right;
+  margin-top: 50px;
 }
 
 .nav-tabs a{
-	text-transform: capitalize;
-	color: black;
+  text-transform: capitalize;
+  color: black;
 }
 
 code{
@@ -44,13 +44,17 @@ code{
 }
 
 .accordion, .card{
-	margin-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.accordion:first-of-type {
+  margin-top: 30px;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 button.btn-link{
-	color: blue;
+  color: blue;
 }
