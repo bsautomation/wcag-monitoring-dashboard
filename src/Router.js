@@ -6,9 +6,15 @@ import {
 } from "react-router-dom";
 import Home from './components/Home';
 import Task from './components/Task';
-
+import Login from "./components/auth/Login";
+import useToken from "./components/auth/useToken";
 
 export default function Roter() {
+  const { token, setToken } = useToken();
+
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
 
   return (
     <Router>

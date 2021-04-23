@@ -1,0 +1,9 @@
+{
+	"google_auth": {
+		"client_id": ""
+	},
+	"api_cred": {
+		"user": "",
+		"password":""
+	}
+}

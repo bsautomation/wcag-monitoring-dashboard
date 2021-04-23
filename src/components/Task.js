@@ -23,6 +23,10 @@ const Task = () => {
     })
   };
 
+  const downloadCSV = () => {
+    fetch(constants.API_ENDPOINT + '/bstack/api/build.csv?module=' + module + '&env=' + env + '&build_no=' + build_no)
+  }
+
   useEffect(()=>{
     document.title = "Wcag monitoring Tool"
     getResult()
@@ -36,7 +40,7 @@ const Task = () => {
     return (
       <Container fluid>
         <Header />
-          <Button className='download-csv' variant="outline-primary">Download CSV </Button>
+          <a href={constants.API_ENDPOINT + '/bstack/api/build.csv?module=' + module + '&env=' + env + '&build_no=' + build_no}><Button className='download-csv' variant="outline-info">Download CSV </Button></a>
           {data.map((tasks, index)=>(
             <Card key={index} data={tasks} titleIndex={index+1}/>
           ))}
