@@ -1,4 +1,4 @@
-import {Tabs, Tab, Sonnet, Container, Card, OverlayTrigger, Tooltip, Button} from 'react-bootstrap';
+import {Tabs, Tab, Container, Card, OverlayTrigger, Tooltip, Button} from 'react-bootstrap';
 import {useState, useEffect} from 'react'
 import '../styles/card.css'
 const time = new Date().getTime();

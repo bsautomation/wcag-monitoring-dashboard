@@ -1,4 +1,4 @@
-import {Card,CardColumns, Link, Accordion, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {Card, Accordion, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import {useState} from 'react'
 import { useParams } from 'react-router';
 import '../../styles/card.css'
@@ -9,7 +9,6 @@ const constants = require('../../constants');
 
 const CustomCard = ({data, titleIndex}) => {
 	const [hide, setHide] = useState('Show');
-	const [Loaded, setLoaded] = useState();
   const [results, setResults] = useState();
   const {module, env} = useParams();
 
@@ -43,7 +42,6 @@ const CustomCard = ({data, titleIndex}) => {
 				}
 			})
       setResults(chartData);
-      setLoaded(true);
     })
   };
 

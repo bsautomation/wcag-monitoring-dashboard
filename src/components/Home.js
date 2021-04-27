@@ -7,9 +7,9 @@ import DropDown from './dropdown/DropDown'
 import $ from 'jquery';
 const constants = require('../constants');
 
-const Home = () => {
+const Home = ({loaded}) => {
 
-  const [Loaded, setLoaded] = useState();
+  const [Loaded, setLoaded] = useState(loaded);
   const [envs, setEnvs] = useState(['all']);
   const [env, setEnv] = useState();
   const [module, setModule] = useState();
@@ -119,6 +119,7 @@ const Home = () => {
     return (
       <Container fluid>
         <Header />
+        <h3>WCAG Monitoring Tool</h3>
         <Row>
           <label> Env Name: </label>
           {envs === undefined ? "" : <DropDown id='envs' list={envs} handleDropdownChange={getModules}/> }

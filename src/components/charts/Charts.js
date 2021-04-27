@@ -16,15 +16,15 @@ const Charts = ({data, clickHandler}) => {
       }}
       onClick={clickHandler}
     >
-      <CartesianGrid strokeDasharray="1 1" />
+      <CartesianGrid strokeDasharray="5 5" stroke="white" />
       <XAxis dataKey="date" />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="serious" stackId="a" fill="#EF5350" />
-      <Bar dataKey="critical" stackId="a" fill="#FF9800" />
-      <Bar dataKey="moderate" stackId="a" fill="#FFCA28" />
-      <Bar dataKey="minor" stackId="a" fill="#CDDC39">
+      <Bar dataKey="serious" stackId="a" fill="rgb(255, 99, 132)" />
+      <Bar dataKey="critical" stackId="a" fill="rgb(255, 159, 64)" />
+      <Bar dataKey="moderate" stackId="a" fill="rgb(75, 192, 192)" />
+      <Bar dataKey="minor" stackId="a" fill="rgb(54, 162, 235)">
         <LabelList dataKey="build_no" position="top" angle="0"  />
       </Bar>
     </BarChart>

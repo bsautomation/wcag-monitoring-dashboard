@@ -1,5 +1,5 @@
-import { React, useState } from 'react';
-import { useGoogleLogin, GoogleLogin } from 'react-google-login';
+import { React } from 'react';
+import { GoogleLogin } from 'react-google-login';
 import PropTypes from 'prop-types';
 const constants = require('../../constants');
 

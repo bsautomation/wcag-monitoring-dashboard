@@ -1,16 +1,15 @@
-import {Container, Row, Spinner, Button, CardDeck} from 'react-bootstrap';
+import {Container, Spinner, Button} from 'react-bootstrap';
 import {useState, useEffect} from 'react'
-import { useParams } from 'react-router';
-import '../styles/home.css'
-import '../styles/card.css'
-import Header from './Header'
-import Card from './container/card'
-import $ from 'jquery';
-const constants = require('../constants');
+import { useParams } from 'react-router-dom';
+import '../../styles/home.css'
+import '../../styles/card.css'
+import Header from '../Header'
+import Card from '../container/card'
+const constants = require('../../constants');
 
-const Task = () => {
+const Task = ({loaded}) => {
 
-  const [Loaded, setLoaded] = useState();
+  const [Loaded, setLoaded] = useState(loaded);
   const [data, setData] = useState();
   const {module, env, build_no} = useParams();
 
@@ -22,10 +21,6 @@ const Task = () => {
       setLoaded(true);
     })
   };
-
-  const downloadCSV = () => {
-    fetch(constants.API_ENDPOINT + '/bstack/api/build.csv?module=' + module + '&env=' + env + '&build_no=' + build_no)
-  }
 
   useEffect(()=>{
     document.title = "Wcag monitoring Tool"
@@ -40,6 +35,7 @@ const Task = () => {
     return (
       <Container fluid>
         <Header />
+          <h3>Results for {module} module in build no - {build_no}</h3>
           <a href={constants.API_ENDPOINT + '/bstack/api/build.csv?module=' + module + '&env=' + env + '&build_no=' + build_no}><Button className='download-csv' variant="outline-info">Download CSV </Button></a>
           {data.map((tasks, index)=>(
             <Card key={index} data={tasks} titleIndex={index+1}/>

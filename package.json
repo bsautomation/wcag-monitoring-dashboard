@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
+    "enzyme": "^3.11.0",
     "jquery": "^3.6.0",
     "mdbreact": "^5.0.2",
     "react": "^17.0.2",
@@ -16,6 +17,7 @@
     "react-bootstrap-table-next": "^4.0.3",
     "react-dom": "^17.0.2",
     "react-google-login": "^5.2.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.0",
     "react-sticky-header": "^0.2.0",
@@ -25,14 +27,31 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --coverage",
+    "eject": "react-scripts eject",
+    "coverage": "jest --coverage --collectCoverageFrom=src/**/*.{js}"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "coverageReporters": [
+      "json",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "src/components/**/*.js",
+      "!<rootDir>/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 30,
+        "statements": 30
+      }
+    }
   },
   "browserslist": {
     "production": [
@@ -47,6 +66,12 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^5.2.0"
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-plugin-prismjs": "^2.0.1",
+    "eslint": "^7.24.0",
+    "eslint-plugin-react": "^7.23.2",
+    "lodash": "^4.17.21",
+    "prismjs": "^1.23.0"
   }
 }

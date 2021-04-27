@@ -4,6 +4,12 @@ body{
 	font-family: Andale Mono;
 }
 
+h3{
+	text-align:center;
+	margin-top: -20px;
+	margin-bottom: 20px;
+}
+
 .btn{
 	font-size: 12px;
 	font-family: fira code,Menlo;

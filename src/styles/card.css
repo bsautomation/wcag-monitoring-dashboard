@@ -2,10 +2,10 @@
   color: black;
 }
 #controlled-tab-example-tab-serious, .serious{
-  color: darkred;
+  color: rgb(255, 99, 132);
 }
 #controlled-tab-example-tab-critical, .critical{
-  color: red;
+  color: rgb(255, 159, 64);
 }
 #controlled-tab-example-tab-moderate, .moderate{
   color: orange;
@@ -57,4 +57,8 @@ code{
 
 button.btn-link{
   color: blue;
+}
+
+.recharts-rectangle{
+  opacity: 0.5;
 }

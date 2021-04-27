@@ -24,8 +24,8 @@ export default function useToken() {
   };
 
   const [token, setToken] = useState(getToken());
-  const [user, setUser] = useState(getUser());
-  const [image, setImage] = useState(getimageUrl());
+  const [user] = useState(getUser());
+  const [image] = useState(getimageUrl());
 
   const saveToken = userToken => {
     var date = new Date();
