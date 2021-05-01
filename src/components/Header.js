@@ -13,6 +13,8 @@ const Header = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/new">Add New Task</Nav.Link>
+          <Nav.Link href="/pageResults">Single Page Results</Nav.Link>
         </Nav>
         <Nav>
           {creds.image ? <Avatar src={creds.image} size="50" round={true} aria-label={creds.name} /> : <Avatar color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue', 'black'])} name={creds.user} size="50" round={true} aria-label={creds.name}/> }
