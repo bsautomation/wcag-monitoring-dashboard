@@ -128,7 +128,7 @@ const Home = ({loaded}) => {
       </Row>
       <br />
       {!Loaded ? <Spinner animation="border" style={{ marginLeft: "50%"}} /> : ''}
-      {(data.length === 0) ? <span>No Data</span> : <Chart data={data} clickHandler={chartClick}/> }
+      {(data.length === 0) && Loaded ? <span>No Data</span> : <Chart data={data} clickHandler={chartClick}/> }
     </Container>
   )
 }
