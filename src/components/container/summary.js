@@ -21,11 +21,11 @@ const Summary = ({data}) => {
               style={{ width: '8rem' }}
               className="mb-2 total_issue"
             >
-              <Card.Header className='issue_header'>{task.last_result.count.total} Issues</Card.Header>
+              <Card.Header className='issue_header'>{task.last_result == null ? 0 : task.last_result.count.total} Issues</Card.Header>
             </Card>
           </Card.Text>
           <Card.Text>
-            Last Run - {task.last_result.date.split('T')[0]}
+            Last Run - {task.last_result == null ? 'NA' : task.last_result.date.split('T')[0]}
           </Card.Text>
           <Button className='details' variant="info" value={task.id} onClick={getDetails}>Details</Button>
         </Card.Body>
