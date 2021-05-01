@@ -23,6 +23,7 @@ const NewTask = ({results}) => {
           setTaskId(data.id);
           window.location.href = '/view/' + data.id + '?action=added';
         })
+        .catch(error => console.log(error))
   }
 
   const submitAction = (event) => {
