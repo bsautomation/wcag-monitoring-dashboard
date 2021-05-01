@@ -1,0 +1,12 @@
+.page_name{
+	text-align: center;
+	margin-right: 10px;
+}
+
+.card-header{
+	color: red;
+}
+
+.card-columns{
+	column-count: 1;
+}

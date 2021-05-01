@@ -1,31 +1,42 @@
 body{
-	margin-top: 120px;
-	font-size: 12px;
-	font-family: Andale Mono;
+  margin-top: 120px;
+  font-size: 12px;
+  font-family: Andale Mono;
 }
 
 h3{
-	text-align:center;
-	margin-top: -20px;
-	margin-bottom: 20px;
+  text-align:center;
+  margin-top: -20px;
+  margin-bottom: 20px;
 }
 
 .btn{
-	font-size: 12px;
-	font-family: fira code,Menlo;
+  font-size: 12px;
+  font-family: fira code,Menlo;
 }
 
 label, button{
-	margin-right: 10px;
-	margin-left: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .recharts-wrapper{
-	margin-left: auto;
-	margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .download-csv {
-	float: right;
-	margin-top: -40px;
+  float: right;
+  margin-top: -40px;
+}
+
+.run_test{
+  float: right;
+  margin-top: -50px;
+}
+
+.notification{
+  margin-top: -50px;
+  text-align: center;
+  color: black;
 }

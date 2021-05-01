@@ -40,6 +40,7 @@ const Home = ({loaded}) => {
   };
 
   const getResults = (event) => {
+    setLoaded(false)
     let env_name = $('#envs').val()
     let module_name = $('#modules').val()
     let last_build = $('.active').val()
@@ -65,6 +66,7 @@ const Home = ({loaded}) => {
       })
       setData(chartData);
       setModule(module_name);
+      setLoaded(true)
     })
   }
 
@@ -73,7 +75,7 @@ const Home = ({loaded}) => {
     $(this).parent().find("button").removeClass('active')
     $(this).addClass('active');
     let module_name = $('#modules').val()
-    // setLoaded(false)
+    setLoaded(false)
     fetch(constants.API_ENDPOINT + '/bstack/api/module/results/' + event.target.value + '?env=' + env + '&module=' + module_name)
     .then(response => response.json())
     .then(data => {
@@ -94,6 +96,7 @@ const Home = ({loaded}) => {
         if (json['total'])
           chartData.push(json);
       })
+      console.log(data);
       setData(chartData);
       setLoaded(true)
     })
@@ -111,28 +114,23 @@ const Home = ({loaded}) => {
     getEnvs()
   },[])
 
-  if (!Loaded){
-      return (
-        <Spinner animation="border" style={{ marginLeft: "50%"}} />
-      )
-  }else{
-    return (
-      <Container fluid>
-        <Header />
-        <h3>WCAG Monitoring Tool</h3>
-        <Row>
-          <label> Env Name: </label>
-          {envs === undefined ? "" : <DropDown id='envs' list={envs} handleDropdownChange={getModules}/> }
-          {modules === undefined ? "" : <label> Module Name: </label> }
-          {modules === undefined ? "" : <DropDown id='modules' list={modules} handleDropdownChange={getResults}/> }
-          {modules === undefined ? "" : <Button variant="outline-dark" type="submit" value="3" onClick={getTasks} active={!isActive ? 'active': null}>Last 3</Button> }
-          {modules === undefined ? "" : <Button variant="outline-dark" type="submit" value="5" onClick={getTasks} active={isActive ? 'active': null}>Last 5</Button> }
-        </Row>
-        <br />
-        {(data.length === 0) ? <span>No Data</span> : <Chart data={data} clickHandler={chartClick}/> }
-      </Container>
-    )
-  }
+  return (
+    <Container fluid>
+      <Header />
+      <h3>WCAG Monitoring Tool</h3>
+      <Row>
+        <label> Env Name: </label>
+        {envs === undefined ? "" : <DropDown id='envs' list={envs} handleDropdownChange={getModules}/> }
+        {modules === undefined ? "" : <label> Module Name: </label> }
+        {modules === undefined ? "" : <DropDown id='modules' list={modules} handleDropdownChange={getResults}/> }
+        {modules === undefined ? "" : <Button variant="outline-dark" type="submit" value="3" onClick={getTasks} active={!isActive ? 'active': null}>Last 3</Button> }
+        {modules === undefined ? "" : <Button variant="outline-dark" type="submit" value="5" onClick={getTasks} active={isActive ? 'active': null}>Last 5</Button> }
+      </Row>
+      <br />
+      {!Loaded ? <Spinner animation="border" style={{ marginLeft: "50%"}} /> : ''}
+      {(data.length === 0) && Loaded ? <span>No Data</span> : <Chart data={data} clickHandler={chartClick}/> }
+    </Container>
+  )
 }
 
 export default Home

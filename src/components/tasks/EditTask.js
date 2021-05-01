@@ -1,34 +1,39 @@
 import {Container} from 'react-bootstrap';
 import {useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom';
 import Header from '../Header'
 import TaskForm from '../Form/Form'
-import '../../styles/Task.css'
 const constants = require('../../constants');
 
-const NewTask = ({results}) => {
+const EditTask = ({results}) => {
 
-  const [validated, setValidated] = useState(false);
-  const [taskId, setTaskId] = useState();
+  const [data, setData] = useState();
+  const {taskId} = useParams();
 
-  const addTask = (data) => {
+  const getTask = () => {
+
+    fetch(constants.API_ENDPOINT + '/tasks/' + taskId)
+        .then(response => response.json())
+        .then(data => setData(data));
+  }
+
+  const editTask = (data) => {
     const requestOptions = {
-        method: 'POST',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     };
 
-    fetch(constants.API_ENDPOINT + '/tasks', requestOptions)
+    fetch(constants.API_ENDPOINT + '/tasks/' + taskId, requestOptions)
         .then(response => response.json())
         .then(data => {
-          setTaskId(data.id);
-          window.location.href = '/view/' + data.id + '?action=added';
+          console.log(data);
+          window.location.href = '/view/' + taskId + '?action=edited';
         })
-        .catch(error => console.log(error))
   }
 
   const submitAction = (event) => {
     const form = event.currentTarget;
-    console.log(form.checkValidity())
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -38,23 +43,23 @@ const NewTask = ({results}) => {
         if (!event.target[i].name) { continue; }
         json[event.target[i].name] = event.target[i].value
       }
-      addTask(json);
+      editTask(json);
     }
 
-    setValidated(true);
   };
 
   useEffect(()=>{
     document.title = "Wcag monitoring Tool"
+    getTask();
   },[])
 
   return (
     <Container fluid>
       <Header/>
-      <h3>Add New Task</h3>
-      <TaskForm submitAction={submitAction} />
+      <h3>Task Details</h3>
+      {data ? <TaskForm view='edit' data={data} submitAction={submitAction} /> : ''}
     </Container>
   )
 }
 
-export default NewTask;
+export default EditTask
