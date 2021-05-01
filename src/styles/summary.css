@@ -3,8 +3,9 @@
 	margin-right: 10px;
 }
 
-.card-header{
+.issue_header{
 	color: red;
+	font-weight: bold;
 }
 
 .card-columns{

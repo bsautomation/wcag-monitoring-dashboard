@@ -21,7 +21,7 @@ const Summary = ({data}) => {
               style={{ width: '8rem' }}
               className="mb-2 total_issue"
             >
-              <Card.Header>{task.last_result.count.total} Issues</Card.Header>
+              <Card.Header className='issue_header'>{task.last_result.count.total} Issues</Card.Header>
             </Card>
           </Card.Text>
           <Card.Text>
