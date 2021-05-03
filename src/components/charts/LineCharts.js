@@ -16,7 +16,7 @@ const LineCharts = ({data}) => {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="build_no" />
+      <XAxis dataKey="build_no" reversed={true}/>
       <YAxis />
       <Tooltip />
       <Legend />
