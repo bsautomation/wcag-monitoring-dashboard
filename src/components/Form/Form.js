@@ -81,6 +81,10 @@ const TaskForm = ({submitAction, view, data}) => {
           <Form.Label>Timeout (milliseconds)</Form.Label>
           <Form.Control type="text" placeholder="E.g 30000" name='timeout' readOnly={disable} defaultValue={data ? data.timeout : ''} />
         </Form.Group>
+        <Form.Group controlId="actions">
+          <Form.Label>Task actions<a href='https://github.com/pa11y/pa11y#actions'> (see Pa11y documentation)</a></Form.Label>
+          <Form.Control as="textarea" rows={3} placeholder="E.g click element #login-button" name='actions' readOnly={disable} defaultValue={data ? data.actions : ''} />
+        </Form.Group>
         {disable || editable ? '' : <Button variant="primary" type="submit"> Add Page </Button>}
         {!editable ? '' : <Button variant="primary" type="submit"> Save Changes </Button>}
       </Form>
