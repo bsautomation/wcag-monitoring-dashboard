@@ -80,6 +80,7 @@ const ViewTask = () => {
           setMessage('Task ' + taskId + ' deleted successfully.')
           setData('')
           setResult('')
+          setChartdata('')
         })
   }
 
