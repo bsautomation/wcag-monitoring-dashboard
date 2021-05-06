@@ -14,8 +14,15 @@ const Home = ({loaded}) => {
   const [env, setEnv] = useState();
   const [module, setModule] = useState();
   const [modules, setModules] = useState();
-  const [data, setData] = useState([]);
+  const [chartdata, setChartData] = useState([]);
   const [isActive, setActive] = useState(false);
+
+  const getNum = (number) => {
+    if (isNaN(number)) {
+      return 0;
+    }
+    return number;
+  }
 
   const getEnvs = () => {
     fetch(constants.API_ENDPOINT + '/bstack/api/envs')
@@ -52,19 +59,19 @@ const Home = ({loaded}) => {
         let json = {};
         json['build_no'] = build;
         data.tasks[build].forEach(result => {
-          if (result.results[0] && result.results[0].count.serious){
+          if (result.results[0] && result.results[0].count){
             json['date'] = result.results[0].date
-            json['total'] = json['total'] ? json['total'] + result.results[0].count.total : result.results[0].count.total;
-            json['serious'] = json['serious'] ? json['serious'] + result.results[0].count.serious : result.results[0].count.serious;
-            json['critical'] = json['critical'] ? json['critical'] + result.results[0].count.critical : result.results[0].count.critical;
-            json['moderate'] = json['moderate'] ? json['moderate'] + result.results[0].count.moderate : result.results[0].count.moderate;
-            json['minor'] = json['minor'] ? json['minor'] + result.results[0].count.minor : result.results[0].count.minor;
+            json['total'] = json['total'] ? json['total'] + getNum(result.results[0].count.total) : getNum(result.results[0].count.total);
+            json['serious'] = json['serious'] ? json['serious'] + getNum(result.results[0].count.serious) : getNum(result.results[0].count.serious);
+            json['critical'] = json['critical'] ? json['critical'] + getNum(result.results[0].count.critical) : getNum(result.results[0].count.critical);
+            json['moderate'] = json['moderate'] ? json['moderate'] + getNum(result.results[0].count.moderate) : getNum(result.results[0].count.moderate);
+            json['minor'] = json['minor'] ? json['minor'] + getNum(result.results[0].count.minor) : getNum(result.results[0].count.minor);
           }
         })
         if (json['total'])
           chartData.push(json);
       })
-      setData(chartData);
+      setChartData(chartData);
       setModule(module_name);
       setLoaded(true)
     })
@@ -72,34 +79,8 @@ const Home = ({loaded}) => {
 
   const getTasks = (event) => {
     setActive(!isActive);
-    $(this).parent().find("button").removeClass('active')
-    $(this).addClass('active');
-    let module_name = $('#modules').val()
     setLoaded(false)
-    fetch(constants.API_ENDPOINT + '/bstack/api/module/results/' + event.target.value + '?env=' + env + '&module=' + module_name)
-    .then(response => response.json())
-    .then(data => {
-      let chartData = [];
-      data.builds.forEach(build => {
-        let json = {};
-        json['build_no'] = build;
-        data.tasks[build].forEach(result => {
-          if (result.results[0] && result.results[0].count.serious){
-            json['date'] = result.results[0].date
-            json['total'] = json['total'] ? json['total'] + result.results[0].count.total : result.results[0].count.total;
-            json['serious'] = json['serious'] ? json['serious'] + result.results[0].count.serious : result.results[0].count.serious;
-            json['critical'] = json['critical'] ? json['critical'] + result.results[0].count.critical : result.results[0].count.critical;
-            json['moderate'] = json['moderate'] ? json['moderate'] + result.results[0].count.moderate : result.results[0].count.moderate;
-            json['minor'] = json['minor'] ? json['minor'] + result.results[0].count.minor : result.results[0].count.minor;
-          }
-        })
-        if (json['total'])
-          chartData.push(json);
-      })
-      console.log(data);
-      setData(chartData);
-      setLoaded(true)
-    })
+    getResults(event);
   }
 
   const chartClick = (event) => {
@@ -128,7 +109,7 @@ const Home = ({loaded}) => {
       </Row>
       <br />
       {!Loaded ? <Spinner animation="border" style={{ marginLeft: "50%"}} /> : ''}
-      {(data.length === 0) && Loaded ? <span>No Data</span> : <Chart data={data} clickHandler={chartClick}/> }
+      {(chartdata.length === 0) && Loaded ? <span>No Data</span> : <Chart data={chartdata} clickHandler={chartClick}/> }
     </Container>
   )
 }

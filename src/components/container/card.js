@@ -18,6 +18,13 @@ const CustomCard = ({data, titleIndex}) => {
     </Tooltip>
   );
 
+  const getNum = (number) => {
+    if (isNaN(number)) {
+      return 0;
+    }
+    return number;
+  }
+
   const getResult = (title) => {
     fetch(constants.API_ENDPOINT + '/bstack/api/name/results?module=' + module + '&env=' + env + '&name=' + title)
     .then(response => response.json())
@@ -28,13 +35,13 @@ const CustomCard = ({data, titleIndex}) => {
         json['build_no'] = build;
         if(output.tasks[build] !== undefined){
           output.tasks[build].forEach(result => {
-            if (result.results[0] && result.results[0].count.serious){
+            if (result.results[0] && result.results[0].count){
               json['date'] = result.results[0].date.split('T')[0]
-              json['total'] = json['total'] ? json['total'] + result.results[0].count.total : result.results[0].count.total;
-              json['serious'] = json['serious'] ? json['serious'] + result.results[0].count.serious : result.results[0].count.serious;
-              json['critical'] = json['critical'] ? json['critical'] + result.results[0].count.critical : result.results[0].count.critical;
-              json['moderate'] = json['moderate'] ? json['moderate'] + result.results[0].count.moderate : result.results[0].count.moderate;
-              json['minor'] = json['minor'] ? json['minor'] + result.results[0].count.minor : result.results[0].count.minor;
+              json['total'] = json['total'] ? json['total'] + getNum(result.results[0].count.total) : getNum(result.results[0].count.total);
+              json['serious'] = json['serious'] ? json['serious'] + getNum(result.results[0].count.serious) : getNum(result.results[0].count.serious);
+              json['critical'] = json['critical'] ? json['critical'] + getNum(result.results[0].count.critical) : getNum(result.results[0].count.critical);
+              json['moderate'] = json['moderate'] ? json['moderate'] + getNum(result.results[0].count.moderate) : getNum(result.results[0].count.moderate);
+              json['minor'] = json['minor'] ? json['minor'] + getNum(result.results[0].count.minor) : getNum(result.results[0].count.minor);
             }
           })
           if (json['total'])
