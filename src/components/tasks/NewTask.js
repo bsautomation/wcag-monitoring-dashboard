@@ -28,7 +28,6 @@ const NewTask = ({results}) => {
 
   const submitAction = (event) => {
     const form = event.currentTarget;
-    console.log(form.checkValidity())
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
