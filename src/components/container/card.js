@@ -65,7 +65,7 @@ const CustomCard = ({data, titleIndex}) => {
     <Accordion>
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="1">
-          {titleIndex} - {data.name} ({data.url})
+          {titleIndex} - {data.name} ({data.url}) (Issues - {data.results[0].count.total})
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="1">
           <Card.Body>
