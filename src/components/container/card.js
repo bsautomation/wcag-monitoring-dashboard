@@ -83,7 +83,7 @@ const CustomCard = ({data, titleIndex}) => {
             {!results ? '' : <LineChart data={results} />}
             <br/>
             <br/>
-            {data.results[0].results[0] ? <TaskResult results={data.results[0].results[0]} />: ''}
+            {(data.results[0] && data.results[0].results[0]) ? <TaskResult results={data.results[0].results[0]} />: ''}
           </Card.Body>
         </Accordion.Collapse>
       </Card>
