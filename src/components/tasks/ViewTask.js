@@ -115,7 +115,7 @@ const ViewTask = () => {
         }
       {!Loaded ? <Spinner animation="border" style={{ marginLeft: "50%"}} /> : ''}
       {chartdata ? <ResultChart data={chartdata} /> : ''}
-      {result && result[0] ? <TaskResult results={result[0].results[0]} /> : '' }
+      {result && result[0] && result[0].results[0] ? <TaskResult results={result[0].results[0]} /> : '' }
       {data && !result && !message ? 
         <Alert variant="info">
           <Alert.Heading>There are no results to show</Alert.Heading>
